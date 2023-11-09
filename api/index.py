@@ -27,6 +27,10 @@ def home():
 def about():
     return 'About'
 
+@app.route('test')
+def test():
+    return 'tester test'
+
 ### API Methods     
 
 # Register new user
