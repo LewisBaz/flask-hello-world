@@ -1,15 +1,10 @@
 from flask import Flask, request
 import time
-import mongoengine
-from mongoengine import DynamicDocument, IntField, DateField, ListField, FloatField, StringField
+from mongoengine import *
 from datetime import datetime
-import numpy as np # работа с векторами
-import matplotlib.pyplot as plt # рисовать графики
 import pandas as pd
-from prompt_toolkit import HTML # для работы с матрицами
 import csv
 import os
-from sklearn.decomposition import TruncatedSVD
 import requests
 import jinja2 
 from random import randint
