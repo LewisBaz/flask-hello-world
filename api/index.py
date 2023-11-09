@@ -1,6 +1,6 @@
 from flask import Flask, request
 import time
-from mongoengine import *
+from mongoengine import DynamicDocument, IntField, DateField, ListField, FloatField, StringField
 from datetime import datetime
 import numpy as np # работа с векторами
 import matplotlib.pyplot as plt # рисовать графики
