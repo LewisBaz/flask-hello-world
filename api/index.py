@@ -2,8 +2,6 @@ from flask import Flask, request
 import time
 from mongoengine import *
 from datetime import datetime
-import csv
-import os
 import requests
 from random import randint
 from pymongo.mongo_client import MongoClient
@@ -342,31 +340,6 @@ def setCurrentMood():
     currentMood.save()
     
     return "Mood successfully recorded!"
-
-# Create a prod.csv file for the dataset like recomendation.csv
-def createProdsDF():
-    if(os.path.exists('prod.csv') and os.path.isfile('prod.csv')):
-        os.remove('prod.csv')
-        
-    filecsv = open('prod.csv', 'a+')
-    writer = csv.writer(filecsv)
-    header = ["productId", "name", "desc"]
-    writer.writerow(header)
-    
-    fullData = []
-    for item in Techniques.objects:
-        smallData = []
-        smallData.append(item.tech_id)
-        smallData.append(item.name)
-        if item.description != None:
-            smallData.append(item.description)
-        else:
-            smallData.append("")
-        fullData.append(smallData)
-        
-    writer.writerows(fullData)
-    
-    return filecsv
 
 ### 3 Screen
 
