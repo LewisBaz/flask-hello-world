@@ -1,5 +1,6 @@
 from flask import Flask, request
 import time
+import mongoengine
 from mongoengine import DynamicDocument, IntField, DateField, ListField, FloatField, StringField
 from datetime import datetime
 import numpy as np # работа с векторами
