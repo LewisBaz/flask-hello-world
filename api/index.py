@@ -10,7 +10,7 @@ import jinja2
 from random import randint
 from pymongo.mongo_client import MongoClient
 
-app = Flask("LERAAPP")
+app = Flask(__name__)
 
 uri = "mongodb+srv://user322:rosewall16@Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(uri)
