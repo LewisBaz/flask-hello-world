@@ -16,6 +16,8 @@ con = connect(host="mongodb+srv://Cluster0.fcrlokx.mongodb.net",
                  password="rosewall16",
                  db = "valeriia_baz_db")
 
+collections=con['valeriia_baz_db'].list_collection_names()
+
 @app.route('/')
 def home():
     return 'Hello, World!'
@@ -96,10 +98,10 @@ def login():
     userId = 0
     
     # Find a user in the database
-    for item in UserPassword.objects:
+    for item in collections.UserPassword.objects:
         if item.login == login and item.password == password:
             userId = item.userId
-            for user in User.objects:
+            for user in collections.User.objects:
                 if user.userId == userId:
                     response = {
                         "userId" : user.userId,
@@ -110,7 +112,7 @@ def login():
     # Returning the answer
     if response != {}:
         launchTime = time.time()
-        User.objects(userId=userId).update_one(set__launchTime = launchTime)
+        collections.User.objects(userId=userId).update_one(set__launchTime = launchTime)
         return response
     else:
         return "Wrong login or password. Please, try again"
