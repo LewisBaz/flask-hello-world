@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import time
 from mongoengine import *
 from datetime import datetime
@@ -87,17 +87,13 @@ def users():
     users = []
     count = 0
     for item in UserPassword.objects:
-        users.append(item)
+        users.append(item.to_json())
         count += 1
-        return {
-            'item': item,
-            'count': len(UserPassword.objects)
-        }
         
-    # return {
-    #     "users": users,
-    #     "count": count
-    #     }
+    return jsonify({
+        "users": users,
+        "count": count
+    })
 
 # Log in and get the user's data
 @app.route("/login", methods=['POST'])
