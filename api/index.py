@@ -6,17 +6,19 @@ import requests
 from random import randint
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from bson import json_util
+import json
 
 app = Flask("APP")
 
 uri = "mongodb+srv://user322:rosewall16@Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(uri, server_api=ServerApi('1'))
 
-con = connect(
-    host="mongodb+srv://Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority",
-    username = "user322",
-    password = "rosewall16",
-    db = "valeriia_baz_db")
+# con = connect(
+#     host="mongodb+srv://Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority",
+#     username = "user322",
+#     password = "rosewall16",
+#     db = "valeriia_baz_db")
 
 collections=con['valeriia_baz_db'].list_collection_names()
 for col in collections:
@@ -94,9 +96,9 @@ def users():
         print(document)
         res.append(document)
     
-    return jsonify({
-        "users": res,
-    }) 
+    json_docs = [json.loads(json_util.dumps(doc)) for doc in documents]
+
+    return json.dumps(json_docs)
 
 # Log in and get the user's data
 @app.route("/login", methods=['POST'])
