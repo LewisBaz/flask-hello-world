@@ -433,6 +433,7 @@ def onEnd():
 # Models
 
 class User(DynamicDocument):
+    _id: ObjectIdField()
     userId: IntField(required=True)
     name: StringField()
     email: StringField()
@@ -441,6 +442,7 @@ class User(DynamicDocument):
     launchTime: FloatField()
     
 class UserPassword(DynamicDocument):
+    _id: ObjectIdField()
     userId: IntField(required=True)
     password: StringField()
     login: StringField()
