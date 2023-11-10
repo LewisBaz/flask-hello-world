@@ -89,11 +89,15 @@ def users():
     for item in UserPassword.objects:
         users.append(item)
         count += 1
-        
-    return {
-        "users": users,
-        "count": count
+        return {
+            'item': item,
+            'count': len(UserPassword.objects)
         }
+        
+    # return {
+    #     "users": users,
+    #     "count": count
+    #     }
 
 # Log in and get the user's data
 @app.route("/login", methods=['POST'])
