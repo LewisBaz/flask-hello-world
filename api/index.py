@@ -11,10 +11,11 @@ app = Flask("APP")
 # uri = "mongodb+srv://user322:rosewall16@Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority"
 # client = MongoClient(uri)
 
-con = connect(host="mongodb+srv://Cluster0.fcrlokx.mongodb.net",
-                 username = "user322",
-                 password="rosewall16",
-                 db = "valeriia_baz_db")
+con = connect(
+    host="mongodb+srv://Cluster0.fcrlokx.mongodb.net",
+    username = "user322",
+    password = "rosewall16",
+    db = "valeriia_baz_db")
 
 collections=con['valeriia_baz_db'].list_collection_names()
 for col in collections:
@@ -86,7 +87,7 @@ def users():
     users = []
     count = 0
     for item in User.objects:
-        users.append(item)
+        users.append(item.to_json())
         count += 1
         
     return {
