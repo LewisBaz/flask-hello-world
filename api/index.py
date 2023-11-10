@@ -5,11 +5,12 @@ from datetime import datetime
 import requests
 from random import randint
 from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 
 app = Flask("APP")
 
-# uri = "mongodb+srv://user322:rosewall16@Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority"
-# client = MongoClient(uri)
+uri = "mongodb+srv://user322:rosewall16@Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority"
+client = MongoClient(uri, server_api=ServerApi('1'))
 
 con = connect(
     host="mongodb+srv://Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority",
@@ -84,16 +85,12 @@ def hello():
 
 @app.route("/users", methods=['GET'])
 def users():  
-    users = []
-    count = 0
-    for item in UserPassword.objects:
-        users.append(item.to_json())
-        count += 1
-        
-    return jsonify({
-        "users": users,
-        "count": count
-    })
+    client = MongoClient('localhost', 27017)
+    db = client.valeriia_baz_db
+    collection = db.User
+
+    for document in collection.find():
+        print(document)
 
 # Log in and get the user's data
 @app.route("/login", methods=['POST'])
