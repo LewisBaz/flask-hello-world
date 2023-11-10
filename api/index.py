@@ -90,13 +90,7 @@ def users():
     db = client.valeriia_baz_db
     collection = db.User
     
-    res = []
-
-    for document in collection.find():
-        print(document)
-        res.append(document)
-    
-    json_docs = [json.loads(json_util.dumps(doc)) for doc in documents]
+    json_docs = [json.loads(json_util.dumps(doc)) for doc in collection.find()]
 
     return json.dumps(json_docs)
 
