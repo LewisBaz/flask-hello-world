@@ -12,7 +12,7 @@ app = Flask("APP")
 # client = MongoClient(uri)
 
 con = connect(
-    host="mongodb+srv://Cluster0.fcrlokx.mongodb.net",
+    host="mongodb+srv://Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority",
     username = "user322",
     password = "rosewall16",
     db = "valeriia_baz_db")
@@ -106,10 +106,10 @@ def login():
     userId = 0
     
     # Find a user in the database
-    for item in collections.UserPassword.objects:
+    for item in UserPassword.objects:
         if item.login == login and item.password == password:
             userId = item.userId
-            for user in collections.User.objects:
+            for user in User.objects:
                 if user.userId == userId:
                     response = {
                         "userId" : user.userId,
@@ -120,7 +120,7 @@ def login():
     # Returning the answer
     if response != {}:
         launchTime = time.time()
-        collections.User.objects(userId=userId).update_one(set__launchTime = launchTime)
+        User.objects(userId=userId).update_one(set__launchTime = launchTime)
         return response
     else:
         return "Wrong login or password. Please, try again"
