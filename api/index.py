@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS
 import time
 from mongoengine import *
 from datetime import datetime
@@ -10,6 +11,7 @@ from bson import json_util
 import json
 
 app = Flask("APP")
+CORS(app)
 
 uri = "mongodb+srv://user322:rosewall16@Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(uri, server_api=ServerApi('1'))

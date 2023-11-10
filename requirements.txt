@@ -2,3 +2,4 @@ Flask==3.0.0
 mongoengine
 pymongo
 requests
+flask_cors
