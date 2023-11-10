@@ -8,8 +8,13 @@ from pymongo.mongo_client import MongoClient
 
 app = Flask("APP")
 
-uri = "mongodb+srv://user322:rosewall16@Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority"
-client = MongoClient(uri)
+# uri = "mongodb+srv://user322:rosewall16@Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority"
+# client = MongoClient(uri)
+
+con = connect(host="mongodb+srv://Cluster0.fcrlokx.mongodb.net",
+                 username = "user322",
+                 password="rosewall16",
+                 db = "valeriia_baz_db")
 
 @app.route('/')
 def home():
