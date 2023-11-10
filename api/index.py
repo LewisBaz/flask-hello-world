@@ -77,6 +77,14 @@ def generateUserId():
 def hello():  
     return "Hello"
 
+@app.route("/users", methods=['GET'])
+def users():  
+    users = []
+    for item in UserPassword.objects:
+        users.append(item)
+        
+    return users
+
 # Log in and get the user's data
 @app.route("/login", methods=['POST'])
 def login():
