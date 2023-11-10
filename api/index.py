@@ -84,10 +84,14 @@ def hello():
 @app.route("/users", methods=['GET'])
 def users():  
     users = []
+    count = 0
     for item in User.objects:
         users.append(item)
         
-    return users
+    return {
+        "users": users,
+        "count": count
+        }
 
 # Log in and get the user's data
 @app.route("/login", methods=['POST'])
