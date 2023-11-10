@@ -85,7 +85,6 @@ def hello():
 
 @app.route("/users", methods=['GET'])
 def users():  
-    client = MongoClient('localhost', 27017)
     db = client.valeriia_baz_db
     collection = db.User
 
