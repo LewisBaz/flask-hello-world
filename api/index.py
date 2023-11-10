@@ -8,8 +8,8 @@ from pymongo.mongo_client import MongoClient
 
 app = Flask("APP")
 
-# uri = "mongodb+srv://user322:rosewall16@Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority"
-# client = MongoClient(uri)
+uri = "mongodb+srv://user322:rosewall16@Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority"
+client = MongoClient(uri)
 
 @app.route('/')
 def home():
