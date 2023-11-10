@@ -13,6 +13,7 @@ app = Flask("APP")
 
 uri = "mongodb+srv://user322:rosewall16@Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(uri, server_api=ServerApi('1'))
+db = client.valeriia_baz_db
 
 # con = connect(
 #     host="mongodb+srv://Cluster0.fcrlokx.mongodb.net/?retryWrites=true&w=majority",
@@ -87,7 +88,6 @@ def hello():
 
 @app.route("/users", methods=['GET'])
 def users():  
-    db = client.valeriia_baz_db
     collection = db.User
     
     json_docs = [json.loads(json_util.dumps(doc)) for doc in collection.find()]
@@ -97,6 +97,8 @@ def users():
 # Log in and get the user's data
 @app.route("/login", methods=['POST'])
 def login():
+    psrds = db.UserPassword
+    users = db.User
     # At the login we get a username and password
     login = request.form.get("login")
     password = request.form.get("password")
@@ -105,21 +107,22 @@ def login():
     userId = 0
     
     # Find a user in the database
-    for item in UserPassword.objects:
+    items = [json.loads(json_util.dumps(item)) for item in psrds.find()]
+    for psrd in psrds.find():
+        item = json_util.dumps(psrd)
         if item.login == login and item.password == password:
             userId = item.userId
-            for user in User.objects:
-                if user.userId == userId:
+            for user in users.find():
+                usr = json_util.dumps(user)
+                if usr.userId == userId:
                     response = {
-                        "userId" : user.userId,
-                        "name" : user.name,
-                        "email" : user.email
+                        "userId" : usr.userId,
+                        "name" : usr.name,
+                        "email" : usr.email
                         }
     
     # Returning the answer
     if response != {}:
-        launchTime = time.time()
-        User.objects(userId=userId).update_one(set__launchTime = launchTime)
         return response
     else:
         return "Wrong login or password. Please, try again"
