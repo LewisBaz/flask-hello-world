@@ -110,15 +110,15 @@ def login():
     items = [json.loads(json_util.dumps(item)) for item in psrds.find()]
     for psrd in psrds.find():
         item = json.loads(json_util.dumps(psrd))
-        if item.login == login and item.password == password:
+        if item['login'] == login and item['password'] == password:
             userId = item.userId
             for user in users.find():
                 usr = json.loads(json_util.dumps(user))
-                if usr.userId == userId:
+                if usr['userId'] == userId:
                     response = {
-                        "userId" : usr.userId,
-                        "name" : usr.name,
-                        "email" : usr.email
+                        "userId" : usr['userId'],
+                        "name" : usr['name'],
+                        "email" : usr['email']
                         }
     
     # Returning the answer
