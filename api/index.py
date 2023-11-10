@@ -84,7 +84,7 @@ def hello():
 @app.route("/users", methods=['GET'])
 def users():  
     users = []
-    for item in collections[0].objects:
+    for item in User.objects:
         users.append(item)
         
     return users
