@@ -406,8 +406,6 @@ def onEnd():
     Statistics.objects(user_id=int(userId)).update_one(set__calm_mins = int(calmMins))
     
     return "Success"
-    
-app.run()
 
 # Models
 
