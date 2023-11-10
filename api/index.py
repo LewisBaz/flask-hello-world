@@ -109,11 +109,11 @@ def login():
     # Find a user in the database
     items = [json.loads(json_util.dumps(item)) for item in psrds.find()]
     for psrd in psrds.find():
-        item = json_util.dumps(psrd)
+        item = json.loads(json_util.dumps(psrd))
         if item.login == login and item.password == password:
             userId = item.userId
             for user in users.find():
-                usr = json_util.dumps(user)
+                usr = json.loads(json_util.dumps(user))
                 if usr.userId == userId:
                     response = {
                         "userId" : usr.userId,
