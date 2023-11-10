@@ -87,12 +87,15 @@ def hello():
 def users():  
     db = client.valeriia_baz_db
     collection = db.User
+    
+    res = []
 
     for document in collection.find():
         print(document)
+        res.append(document)
     
     return {
-        'data' : collection.find()
+        'data' : jsonify(res)
     }    
 
 # Log in and get the user's data
