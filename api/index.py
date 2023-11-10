@@ -17,6 +17,8 @@ con = connect(host="mongodb+srv://Cluster0.fcrlokx.mongodb.net",
                  db = "valeriia_baz_db")
 
 collections=con['valeriia_baz_db'].list_collection_names()
+for col in collections:
+    print(col)
 
 @app.route('/')
 def home():
@@ -82,7 +84,7 @@ def hello():
 @app.route("/users", methods=['GET'])
 def users():  
     users = []
-    for item in collections['UserPassword'].objects:
+    for item in collections[0].objects:
         users.append(item)
         
     return users
