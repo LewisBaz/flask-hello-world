@@ -91,6 +91,10 @@ def users():
 
     for document in collection.find():
         print(document)
+    
+    return {
+        'data' : collection.find()
+    }    
 
 # Log in and get the user's data
 @app.route("/login", methods=['POST'])
