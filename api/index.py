@@ -87,6 +87,7 @@ def users():
     count = 0
     for item in User.objects:
         users.append(item)
+        count += 1
         
     return {
         "users": users,
