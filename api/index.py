@@ -86,8 +86,8 @@ def hello():
 def users():  
     users = []
     count = 0
-    for item in User.objects:
-        users.append(item.to_json())
+    for item in UserPassword.objects:
+        users.append(item)
         count += 1
         
     return {
