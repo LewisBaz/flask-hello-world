@@ -94,9 +94,9 @@ def users():
         print(document)
         res.append(document)
     
-    return {
-        'data' : jsonify(res)
-    }    
+    return jsonify({
+        "users": res,
+    }) 
 
 # Log in and get the user's data
 @app.route("/login", methods=['POST'])
