@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request
 import time
 from mongoengine import *
 from datetime import datetime
@@ -20,9 +20,9 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 #     password = "rosewall16",
 #     db = "valeriia_baz_db")
 
-collections=con['valeriia_baz_db'].list_collection_names()
-for col in collections:
-    print(col)
+# collections=con['valeriia_baz_db'].list_collection_names()
+# for col in collections:
+#     print(col)
 
 @app.route('/')
 def home():
