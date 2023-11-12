@@ -124,7 +124,7 @@ def login():
     
     # Returning the answer
     if response != {}:
-        return response
+        return json.dumps(response)
     else:
         return {
             'message' : "Wrong login or password. Please, try again"
