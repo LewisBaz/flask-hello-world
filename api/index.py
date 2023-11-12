@@ -196,64 +196,6 @@ def sendActivities():
         response["categoryTypes"].append(resp)    
  
     return response                     
-    
-# We get the data for switching to any of the possible activities
-# @app.route('/activities/types', methods=['POST']) 
-# def getAndSendActivity():
-#     # For input we expect category, user id and product id
-#     categoryType = request.form.get("categoryType")
-#     prodId = request.form.get("prod_id")
-    
-#     productToReturn = None
-#     techniques = []
-    
-#     # Find the selected activity in the database and return it
-#     products = Product.objects 
-#     for prod in products:
-#         if prod.prod_id == int(prodId) and prod.categoryType == int(categoryType):
-#             productToReturn = Product()
-#             productToReturn.prod_id = prod.prod_id
-#             productToReturn.prod_name = prod.prod_name
-#             productToReturn.categoryType = prod.categoryType
-#             techniques = prod.techniques
-            
-#     productTechs = {}
-#     for tech in techniques:
-#         for item in Techniques.objects:
-#             if item.name == tech:
-#                 productTechs[tech] = item.to_json()                            
-    
-#     # Check that we found the activity and return it  
-#     if productToReturn != None:
-#         # If the name of the product matches the prepared ones, then we add variants of interaction with the service, otherwise, we return the stub
-#         match productToReturn.prod_name:
-#             case "Pomodoro":
-#                 return {
-#                     "product" : productToReturn.to_json(),
-#                     "techniques" : productTechs
-#                 }
-#             case "Mnemonics":
-#                 return {
-#                     "product" : productToReturn.to_json(),
-#                     "techniques" : productTechs
-#                 }
-#             case "Breathe focus":
-#                 return {
-#                     "product" : productToReturn.to_json(),
-#                     "techniques" : productTechs
-#                 }
-#             case "Activities":
-#                 return {
-#                     "product" : productToReturn.to_json(),
-#                     "techniques" : productTechs
-#                 }   
-#             case default:
-#                 return {
-#                     "title" : "Section is in progress",
-#                     "product" : productToReturn.to_json()
-#                 }
-#     else:
-#         return "None"   
 
 # Find the activity rating 
 def findRatingForActivity(techId, userId):
@@ -358,7 +300,10 @@ def sendUser():
 @app.route('/advice', methods=['GET']) 
 def getAndSendAdvice():
     advice = requests.get('https://api.adviceslip.com/advice')
-    return advice.json()['slip']['advice']
+    response = make_response(jsonify({'success': True, 'data': advice.json()['slip']['advice']}), 200)
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 # The user rates his current mood on a scale of 1-5 using emoji, where 1 is very bad and 5 is very good
 @app.route('/recieve/currentMood', methods=['POST']) 
