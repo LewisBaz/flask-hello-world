@@ -122,7 +122,8 @@ def login():
                         "userId" : usr['userId'],
                         "name" : usr['name'],
                         "email" : usr['email'],
-                        "calm_mins" : usr['calm_mins']
+                        "calm_mins" : usr['calm_mins'],
+                        "last_mood" : usr['last_mood']
                         }
                     response = make_response(jsonify({'success': True, 'data': model}), 200)
                     response.headers['Content-Type'] = 'application/json'
@@ -159,7 +160,15 @@ def setCurrentMood():
         'mood': mood
     }
     
+    updateFilter = {
+        'user_id': user_id
+    }
+    update = {
+        '$set': {'last_mood': mood}
+    }
+    
     db.UserDayMood.insert_one(currentMood)
+    db.User.update_one(updateFilter, update)
     
     response = make_response(jsonify({'success': True, 'message': "Mood successfully recorded!"}), 200)
     response.headers['Content-Type'] = 'application/json'
