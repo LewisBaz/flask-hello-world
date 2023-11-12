@@ -107,10 +107,11 @@ def login():
     
     response = {
         'login': login,
-        'password': password,
-        'req': request
+        'password': password
     }
     userId = 0
+    
+    print(request)
     
     # Find a user in the database
     for psrd in psrds.find():
