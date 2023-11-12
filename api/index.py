@@ -136,6 +136,34 @@ def login():
         return response
     
     return response
+
+# Getting the tip of the day from a third-party API
+@app.route('/advice', methods=['GET']) 
+def getAndSendAdvice():
+    advice = requests.get('https://api.adviceslip.com/advice')
+    response = make_response(jsonify({'success': True, 'data': advice.json()['slip']['advice']}), 200)
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+# The user rates his current mood on a scale of 1-5 using emoji, where 1 is very bad and 5 is very good
+@app.route('/saveMood', methods=['POST']) 
+def setCurrentMood():
+    data = request.get_json()
+    user_id = data['user_id']
+    mood = data['mood']
+    
+    currentMood = UserDayMood()
+    currentMood.user_id = user_id
+    currentMood.date = datetime.now()
+    currentMood.mood = mood
+    
+    currentMood.save()
+    
+    response = make_response(jsonify({'success': True, 'message': "Mood successfully recorded!"}), 200)
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
     
 # Recover password
 @app.route("/reset/password", methods=['POST'])
@@ -296,30 +324,6 @@ def sendUser():
         return response         
     else: 
         return "User not found"
-
-# Getting the tip of the day from a third-party API
-@app.route('/advice', methods=['GET']) 
-def getAndSendAdvice():
-    advice = requests.get('https://api.adviceslip.com/advice')
-    response = make_response(jsonify({'success': True, 'data': advice.json()['slip']['advice']}), 200)
-    response.headers['Content-Type'] = 'application/json'
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    return response
-
-# The user rates his current mood on a scale of 1-5 using emoji, where 1 is very bad and 5 is very good
-@app.route('/recieve/currentMood', methods=['POST']) 
-def setCurrentMood():
-    userId = request.form.get("user_id")
-    mood = request.form.get("mood")
-    
-    currentMood = UserDayMood()
-    currentMood.user_id = userId
-    currentMood.date = datetime.now()
-    currentMood.mood = mood
-    
-    currentMood.save()
-    
-    return "Mood successfully recorded!"
 
 ### 3 Screen
 
