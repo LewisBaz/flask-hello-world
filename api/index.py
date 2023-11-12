@@ -108,9 +108,7 @@ def login():
     userId = 0
     
     model = {}
-    response = {
-        'message' : "Wrong login or password. Please, try again"
-    }
+    response = None
     
     # Find a user in the database
     for psrd in psrds.find():
@@ -130,6 +128,12 @@ def login():
                     response.headers['Access-Control-Allow-Origin'] = '*'
     
     # Returning the answer
+    if response == None:
+        response = {
+            'message' : "Wrong login or password. Please, try again"
+        }
+        return response
+    
     return response
     
 # Recover password
