@@ -107,7 +107,8 @@ def login():
     
     response = {
         'login': login,
-        'password': password
+        'password': password,
+        'req': request
     }
     userId = 0
     
