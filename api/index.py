@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, make_response, jsonify, request
 from flask_cors import CORS
 import time
 from mongoengine import *
@@ -107,6 +107,14 @@ def login():
     password = data['password']
     userId = 0
     
+    model = {}
+    response = {
+        'message' : "Wrong login or password. Please, try again"
+    }
+
+    # Добавление заголовков
+    response.headers['Content-Type'] = 'application/json'
+    response.headers['Access-Control-Allow-Origin'] = '*'
     print(request.form.values)
     
     # Find a user in the database
@@ -117,19 +125,15 @@ def login():
             for user in users.find():
                 usr = json.loads(json_util.dumps(user))
                 if usr['userId'] == userId:
-                    response = {
+                    model = {
                         "userId" : usr['userId'],
                         "name" : usr['name'],
                         "email" : usr['email']
                         }
+                    response = make_response(jsonify({'success': True, 'data': model}), 200)
     
     # Returning the answer
-    if response != {}:
-        return json.dumps(response)
-    else:
-        return {
-            'message' : "Wrong login or password. Please, try again"
-        }
+    return response
     
 # Recover password
 @app.route("/reset/password", methods=['POST'])
