@@ -122,7 +122,7 @@ def login():
                         "userId" : usr['userId'],
                         "name" : usr['name'],
                         "email" : usr['email'],
-                        "calm_mins" : user['calm_mins']
+                        "calm_mins" : usr['calm_mins']
                         }
                     response = make_response(jsonify({'success': True, 'data': model}), 200)
                     response.headers['Content-Type'] = 'application/json'
