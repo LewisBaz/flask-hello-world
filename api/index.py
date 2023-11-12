@@ -126,7 +126,9 @@ def login():
     if response != {}:
         return response
     else:
-        return "Wrong login or password. Please, try again"
+        return {
+            'message' : "Wrong login or password. Please, try again"
+        }
     
 # Recover password
 @app.route("/reset/password", methods=['POST'])
