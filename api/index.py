@@ -105,7 +105,10 @@ def login():
     login = request.form.get("login")
     password = request.form.get("password")
     
-    response = {}
+    response = {
+        'login': login,
+        'password': password
+    }
     userId = 0
     
     # Find a user in the database
