@@ -1,10 +1,8 @@
 from flask import Flask, make_response, jsonify, request, render_template
 from flask_cors import CORS
-import time
 from mongoengine import *
 from datetime import datetime
 import requests
-from random import randint
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from bson import json_util
@@ -19,7 +17,8 @@ db = client.valeriia_baz_db
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    # return render_template('index.html')
+    return "hello"
 
 @app.route("/users", methods=['GET'])
 def users():  
