@@ -111,7 +111,7 @@ def login():
     }
     userId = 0
     
-    print(request)
+    print(request.form)
     
     # Find a user in the database
     for psrd in psrds.find():
