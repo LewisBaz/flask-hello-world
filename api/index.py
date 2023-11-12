@@ -102,13 +102,9 @@ def login():
     psrds = db.UserPassword
     users = db.User
     # At the login we get a username and password
-    login = request.form.get("login")
-    password = request.form.get("password")
-    
-    response = {
-        'login': login,
-        'password': password
-    }
+    data = request.get_json()
+    login = data['login']
+    password = data['password']
     userId = 0
     
     print(request.form.values)
