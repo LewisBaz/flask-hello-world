@@ -121,7 +121,8 @@ def login():
                     model = {
                         "userId" : usr['userId'],
                         "name" : usr['name'],
-                        "email" : usr['email']
+                        "email" : usr['email'],
+                        "calm_mins" : user['calm_mins']
                         }
                     response = make_response(jsonify({'success': True, 'data': model}), 200)
                     response.headers['Content-Type'] = 'application/json'
@@ -395,6 +396,7 @@ class User(DynamicDocument):
     login: StringField()
     dateReg: DateField()
     launchTime: FloatField()
+    calm_mins: IntField()
     
 class UserPassword(DynamicDocument):
     userId: IntField(required=True)
