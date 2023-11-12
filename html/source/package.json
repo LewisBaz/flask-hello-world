@@ -1,0 +1,11 @@
+{
+  "name": "calm-mind",
+  "source": "page1/index.html",
+  "scripts": {
+      "start": "parcel",
+      "build": "parcel build"
+  },
+  "devDependencies": {
+      "parcel": "^2.9.3"
+  }
+}
