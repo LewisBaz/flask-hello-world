@@ -17,8 +17,7 @@ db = client.valeriia_baz_db
 
 @app.route('/')
 def home():
-    # return render_template('index.html')
-    return "hello word"
+    return render_template('index.html')
 
 @app.route("/users", methods=['GET'])
 def users():  
@@ -60,9 +59,10 @@ def login():
                     response.headers['Access-Control-Allow-Origin'] = '*'
     
     if response == None:
-        response = {
+        resp = {
             'message' : "Wrong login or password. Please, try again"
         }
+        response = make_response(jsonify({'success': False, 'data': resp}), 500)
         return response
     
     return response
