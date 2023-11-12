@@ -111,11 +111,6 @@ def login():
     response = {
         'message' : "Wrong login or password. Please, try again"
     }
-
-    # Добавление заголовков
-    response.headers['Content-Type'] = 'application/json'
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    print(request.form.values)
     
     # Find a user in the database
     for psrd in psrds.find():
@@ -131,6 +126,8 @@ def login():
                         "email" : usr['email']
                         }
                     response = make_response(jsonify({'success': True, 'data': model}), 200)
+                    response.headers['Content-Type'] = 'application/json'
+                    response.headers['Access-Control-Allow-Origin'] = '*'
     
     # Returning the answer
     return response
