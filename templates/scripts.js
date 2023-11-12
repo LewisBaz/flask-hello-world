@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log(data);
                 if (data.success) {
                   console.log('success routing');
-                  window.location.href = `main.html?name=${data['data']['name']}&mins=${data['data']['calm_mins']}&user_id=${data['data']['userId']}&last_mood=${data['data']['last_mood']}`;
+                  window.location.href = `templates/main.html?name=${data['data']['name']}&mins=${data['data']['calm_mins']}&user_id=${data['data']['userId']}&last_mood=${data['data']['last_mood']}`;
                 } else {
                   console.log('error routing');
                 }
