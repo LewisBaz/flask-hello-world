@@ -153,12 +153,13 @@ def setCurrentMood():
     user_id = data['user_id']
     mood = data['mood']
     
-    currentMood = UserDayMood()
-    currentMood.user_id = user_id
-    currentMood.date = datetime.now()
-    currentMood.mood = mood
+    currentMood = {
+        'user_id': user_id,
+        'date': datetime.now(),
+        'mood': mood
+    }
     
-    currentMood.save()
+    db.UserDayMood.insert_one(currentMood)
     
     response = make_response(jsonify({'success': True, 'message': "Mood successfully recorded!"}), 200)
     response.headers['Content-Type'] = 'application/json'
