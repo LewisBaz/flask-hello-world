@@ -164,7 +164,7 @@
       flex: 0 0 auto;
     }
     
-    .aut .text-wrapper {
+    .aut .login, .password {
       position: relative;
       flex: 1;
       font-family: var(--font-family-medium);
@@ -286,7 +286,7 @@
       font-style: var(--font-style-medium);
     }
     
-    .aut .button {
+    .aut .button-login {
       display: flex;
       width: 100%;
       height: 56px;

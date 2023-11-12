@@ -110,10 +110,11 @@
   .home .typography-2 {
     position: relative;
     width: 334px;
-    height: 120px;
   }
   
-  .home .text {
+  .home .text-advice {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     width: 334px;
     left: 0;
@@ -128,13 +129,18 @@
   }
   
   .home .x-spacing-5 {
+    display: flex;
+    flex-direction: column;
     position: relative;
     width: 20px;
     height: 20px;
   }
   
   .home .stat {
+    display: flex;
+    flex-direction: column;
     position: relative;
+    margin-top: 30;
     width: 271px;
     height: 80px;
     background-color: #dfdeff;
@@ -236,9 +242,28 @@
   .home .how-r-u {
     position: relative;
     width: 271px;
-    height: 80px;
+    height: 100px;
     background-color: #e1f0f4;
     border-radius: 12px;
+  }
+
+  .home .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+
+  .home .circle-selected {
+    background-color: yellow;
+  }
+
+  .home .integer {
+    opacity: 0;
+    width: 0px;
+    height: 0px;
   }
   
   .home .typography-5 {
@@ -265,22 +290,37 @@
   
   .home .frame {
     display: flex;
-    width: 270px;
-    align-items: center;
+    width: 250px;
     justify-content: space-between;
     padding: 0px 0px;
     position: absolute;
     top: 48px;
     left: 10px;
     right: 10px;
+    height: 48px;
   }
   
   .home .icon-3 {
+    /* position: relative;
+    margin-right: 20px; */
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+
+  .home .icon-arrow {
     position: relative;
     margin-right: 20px;
     width: 24px;
     height: 24px;
     cursor: pointer;
+  }
+
+  .home .icon-3-selected {
+    /* position: relative;
+    margin-right: 20px; */
+    width: 32px;
+    height: 32px;
   }
   
   .home .spacing-3 {

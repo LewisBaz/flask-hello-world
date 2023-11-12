@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="main.css" />
+
+    <script defer src="scripts-main.js"></script>
   </head>
   <body>
     <div class="home">
@@ -20,10 +22,7 @@
           <div class="typography"><div class="head">Hello Pashtet,</div></div>
           <div class="div-wrapper"><div class="x-spacing-4"></div></div>
           <div class="typography-2">
-            <p class="text">
-              Remember, every day is an opportunity to learn and grow. Embrace the challenges and make the most of them.
-              Have a great day!
-            </p>
+            <p class="text-advice"></p>
           </div>
           <div class="x-spacing-wrapper"><div class="x-spacing-5"></div></div>
           <div class="stat">
@@ -40,11 +39,27 @@
           <div class="how-r-u">
             <div class="typography-5"><p class="p">How do you feel today?</p></div>
             <div class="frame">
-              <img class="icon-3" src="./assets/mood1.svg" />
-              <img class="icon-3" src="./assets/mood2.svg" />
-              <img class="icon-3" src="./assets/mood3.svg" />
-              <img class="icon-3" src="./assets/mood4.svg" />
-              <img class="icon-3" src="./assets/mood5.svg" />
+              <span class="integer">999</span>
+              <div class="circle">
+                <img class="icon-3" src="./assets/mood1.svg" onclick="handleIconClick(event)"/>
+              </div>
+              <span class="integer">1</span>
+              <div class="circle">
+                <img class="icon-3" src="./assets/mood2.svg" onclick="handleIconClick(event)"/>
+              </div>
+              <span class="integer">2</span>
+              <div class="circle">
+                <img class="icon-3" src="./assets/mood3.svg" onclick="handleIconClick(event)"/>
+              </div>
+              <span class="integer">3</span>
+              <div class="circle">
+                <img class="icon-3" src="./assets/mood4.svg" onclick="handleIconClick(event)"/>
+              </div>
+              <span class="integer">4</span>
+              <div class="circle">
+                <img class="icon-3" src="./assets/mood5.svg" onclick="handleIconClick(event)"/>
+              </div>
+              <span class="integer">5</span>
             </div>
           </div>
           <div class="spacing-3"><div class="x-spacing-5"></div></div>
@@ -56,7 +71,7 @@
               <div class="text-group">
                 <div class="typography-7"><div class="typography-8">4 of 25</div></div>
               </div>
-              <img class="icon-3" src="./assets/arrow-back.svg" />
+              <img class="icon-arrow" src="./assets/arrow-back.svg" />
             </div>
           </div>
           <div class="div-wrapper"><div class="x-spacing-4"></div></div>
@@ -66,7 +81,7 @@
               <div class="text-group">
                 <div class="typography-7"><div class="typography-8">Matryoshka</div></div>
               </div>
-              <img class="icon-3" src="./assets/arrow-back.svg" />
+              <img class="icon-arrow" src="./assets/arrow-back.svg" />
             </div>
           </div>
           <div class="div-wrapper"><div class="x-spacing-4"></div></div>
@@ -76,7 +91,7 @@
               <div class="text-group">
                 <div class="typography-7"><div class="typography-8">Cicero’s Method</div></div>
               </div>
-              <img class="icon-3" src="./assets/arrow-back.svg" />
+              <img class="icon-arrow" src="./assets/arrow-back.svg" />
             </div>
           </div>
           <div class="div-wrapper"><div class="x-spacing-4"></div></div>
@@ -86,7 +101,7 @@
               <div class="text-group">
                 <div class="typography-7"><div class="typography-8">3 of 60</div></div>
               </div>
-              <img class="icon-3" src="./assets/arrow-back.svg" />
+              <img class="icon-arrow" src="./assets/arrow-back.svg" />
             </div>
           </div>
           <div class="div-wrapper"><div class="x-spacing-4"></div></div>
