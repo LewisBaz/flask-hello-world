@@ -17,8 +17,8 @@ db = client.valeriia_baz_db
 
 @app.route('/')
 def home():
-    # return render_template('index.html')
-    return "Hello World!"
+    return render_template('index.html')
+    # return "Hello World!"
 
 @app.route("/users", methods=['GET'])
 def users():  
